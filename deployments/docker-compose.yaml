@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15.3
+    restart: on-failure
+    ports:
+      - "5432:5432"
+    volumes:
+      - ../db/data:/var/lib/postgresql/data
+    env_file:
+      - ../configs/.env
+    networks:
+      - network
+
+  stan-server:
+    image: nats-streaming
+    ports:
+      - "4222:4222"
+    command:
+      - '-cid=cluster'
+    networks:
+      - network
+
+
+  subscriber:
+    build:
+      context: ../subscriber
+      dockerfile: /build/Dockerfile
+    ports:
+      - "8080:8080"
+    networks:
+      - network
+
+  publisher:
+    build:
+      context: ../publisher
+      dockerfile: /build/Dockerfile
+    networks:
+      - network
+
+networks:
+  network:
+    driver: bridge
