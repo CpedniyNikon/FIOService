@@ -16,9 +16,9 @@ func SubscribeModelOrder(db *gorm.DB, nc stan.Conn) stan.Subscription {
 			fmt.Println(err)
 		}
 
-		GiveAge(&restoredOrder)
-		GiveGender(&restoredOrder)
-		GiveNationality(&restoredOrder)
+		restoredOrder.SetAge()
+		restoredOrder.SetGender()
+		restoredOrder.SetNationality()
 
 		db.Create(&restoredOrder)
 	})

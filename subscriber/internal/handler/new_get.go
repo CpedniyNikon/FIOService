@@ -6,5 +6,5 @@ import (
 )
 
 func (h *Handler) NewGet(c *gin.Context) {
-	c.HTML(http.StatusOK, "menu.html", gin.H{})
+	c.HTML(http.StatusOK, "new.html", gin.H{})
 }

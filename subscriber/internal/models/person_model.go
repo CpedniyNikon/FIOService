@@ -1,7 +1,7 @@
 package models
 
 type PersonData struct {
-	ID          uint    `gorm:"primarykey" json:"-"`
+	ID          uint    `gorm:"primarykey" json:"Id"`
 	FirstName   string  `json:"FirstName"`
 	LastName    string  `json:"LastName"`
 	Age         float64 `json:"Age"`

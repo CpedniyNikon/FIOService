@@ -8,8 +8,8 @@ import (
 )
 
 func (h *Handler) NewPost(c *gin.Context) {
-	firstName := c.PostForm("FirstName") // получение значения параметра name из GET запроса
-	lastName := c.PostForm("LastName")   // получение значения параметра email из GET запроса
+	firstName := c.PostForm("FirstName")
+	lastName := c.PostForm("LastName")
 
 	db, err := methods.InitDbConnection()
 	if err != nil {
@@ -19,9 +19,9 @@ func (h *Handler) NewPost(c *gin.Context) {
 	p := &models.PersonData{FirstName: firstName,
 		LastName: lastName}
 
-	methods.GiveAge(p)
-	methods.GiveGender(p)
-	methods.GiveNationality(p)
+	p.SetAge()
+	p.SetGender()
+	p.SetNationality()
 
 	db.Create(p)
 
