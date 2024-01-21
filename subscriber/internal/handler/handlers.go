@@ -25,6 +25,10 @@ func (h *Handler) InitAuthRoutes() *gin.Engine {
 		orders.GET("/:personId/status", h.GetPersonById)
 		orders.GET("/delete", h.DeleteGet)
 		orders.POST("/delete", h.DeletePost)
+		orders.GET("/update", h.UpdateGet)
+		orders.POST("/update", h.UpdatePost)
+		orders.GET("/show_person", h.ShowPersonGet)
+		orders.POST("/show_person", h.ShowPersonPost)
 	}
 
 	return h.routes

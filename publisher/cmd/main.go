@@ -11,10 +11,25 @@ import (
 
 func main() {
 
+	//res := methods.MakeRequest(fmt.Sprintf("https://api.agify.io/?name=%s", "Ruslan"))
+	//resBytes := []byte(res)
+	//var jsonObj map[string]interface{}
+	//
+	//_ = json.Unmarshal(resBytes, &jsonObj)
+	//fmt.Println(jsonObj)
+	//
+	//age, ok := jsonObj["age"].(float64)
+	//
+	//if !ok {
+	//	return
+	//}
+	//
+	//fmt.Println(age)
+
 	time.Sleep(10 * time.Second)
 	nc, err := methods.InitNatsBridge()
 	if err != nil {
-		log.Fatalln("error initializing nats bridge: %s", err.Error())
+		log.Fatalf("error initializing nats bridge: %s\n", err.Error())
 	}
 
 	res := methods.MakeRequest("https://randomuser.me/api/") // Making the request

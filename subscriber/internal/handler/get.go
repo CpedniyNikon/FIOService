@@ -4,12 +4,14 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/gin-gonic/gin"
+	"github.com/sirupsen/logrus"
 	"net/http"
 	"subscriber/internal/models"
 	"subscriber/internal/utils/methods"
 )
 
 func (h *Handler) Get(c *gin.Context) {
+	logrus.Debug("called get endpoint")
 	db, err := methods.InitDbConnection()
 	if err != nil {
 		panic(err)

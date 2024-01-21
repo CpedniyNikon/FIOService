@@ -2,12 +2,14 @@ package handler
 
 import (
 	"github.com/gin-gonic/gin"
+	"github.com/sirupsen/logrus"
 	"net/http"
 	"subscriber/internal/models"
 	"subscriber/internal/utils/methods"
 )
 
 func (h *Handler) NewPost(c *gin.Context) {
+	logrus.Debug("called new post endpoint")
 	firstName := c.PostForm("FirstName")
 	lastName := c.PostForm("LastName")
 

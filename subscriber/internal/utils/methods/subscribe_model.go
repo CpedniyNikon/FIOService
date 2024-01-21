@@ -2,8 +2,8 @@ package methods
 
 import (
 	"encoding/json"
-	"fmt"
 	"github.com/nats-io/stan.go"
+	"github.com/sirupsen/logrus"
 	"gorm.io/gorm"
 	"subscriber/internal/models"
 )
@@ -13,7 +13,7 @@ func SubscribeModelOrder(db *gorm.DB, nc stan.Conn) stan.Subscription {
 		var restoredOrder models.PersonData
 		err := json.Unmarshal(m.Data, &restoredOrder)
 		if err != nil {
-			fmt.Println(err)
+			logrus.Debug(err)
 		}
 
 		restoredOrder.SetAge()
@@ -23,7 +23,7 @@ func SubscribeModelOrder(db *gorm.DB, nc stan.Conn) stan.Subscription {
 		db.Create(&restoredOrder)
 	})
 	if err != nil {
-		fmt.Println(err)
+		logrus.Debug(err)
 	}
 
 	return subscriber
